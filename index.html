@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry Dang | Admissions Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Linear/Vercel inspired dark theme */
+            --bg-base: #000000;
+            --bg-surface: #0a0a0a;
+            --bg-elevated: rgba(25, 25, 25, 0.6);
+            
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-tertiary: #555555;
+            
+            --accent-main: #ffffff;
+            --accent-glow: rgba(255, 255, 255, 0.15);
+            
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-bounce: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-base);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .text-gradient {
+            background: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            margin-bottom: 64px;
+            max-width: 700px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .glass-card {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--radius-xl);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition-fast);
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--bg-base);
+        }
+
+        .btn-primary:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--border-hover);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .orb-1 {
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+            top: -20%;
+            left: -10%;
+        }
+
+        .orb-2 {
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .mouse-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 80px;
+        }
+
+        .hero-badge {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background-color: var(--border-hover);
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            margin-bottom: 24px;
+            line-height: 1.05;
+        }
+
+        .typing-wrapper {
+            height: 40px;
+            margin-bottom: 32px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+        }
+
+        .typewriter {
+            border-right: 2px solid var(--text-primary);
+            padding-right: 4px;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: var(--radius-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image-placeholder {
+            color: var(--text-tertiary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .about-content p strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 1px;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                var(--border-subtle) 10%, 
+                var(--border-subtle) 90%, 
+                transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 64px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 8px;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--bg-base);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            z-index: 2;
+            transition: var(--transition-bounce);
+        }
+
+        .timeline-item:hover .timeline-marker {
+            transform: scale(1.2);
+            border-color: var(--text-primary);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-content {
+            padding-top: 4px;
+        }
+
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .timeline-events {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .timeline-events li {
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .timeline-events li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 1px;
+            background-color: var(--text-tertiary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-role {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+        }
+
+        .project-details {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .project-detail-group h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .project-detail-group p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .project-link {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 2px;
+            transition: var(--transition-fast);
+        }
+
+        .project-link:hover {
+            border-color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .impact-grid, .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .impact-card {
+            padding: 32px;
+        }
+        
+        .impact-icon {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .impact-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .impact-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .impact-list li:last-child {
+            border-bottom: none;
+        }
+
+        .impact-list strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 24px;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition-bounce);
+            cursor: default;
+        }
+
+        .badge:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--border-hover);
+        }
+
+        .resume-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 80px 24px 40px;
+            background: var(--bg-surface);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .contact-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .contact-item.phone {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+        }
+
+        .contact-item:hover {
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.05); }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* --- MODAL CSS --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 48px;
+            position: relative;
+            transform: translateY(30px) scale(0.95);
+            transition: var(--transition-smooth);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--border-subtle);
+            border-radius: 4px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--text-tertiary);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px; right: 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; justify-content: center; align-items: center;
+            transition: var(--transition-fast);
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .modal-close:hover { 
+            background: rgba(255,255,255,0.1); 
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        /* Transcript Specific CSS */
+        .transcript-header { margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid var(--border-subtle); }
+        .transcript-title { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 16px; }
+        .transcript-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; color: var(--text-secondary); font-size: 0.95rem; }
+        .transcript-meta strong { color: var(--text-primary); display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .transcript-section { margin-bottom: 48px; }
+        .transcript-section h3 { font-size: 1.5rem; color: var(--text-primary); margin-bottom: 4px; }
+        .transcript-school { color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 24px; }
+        .table-responsive { overflow-x: auto; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); }
+        .transcript-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; white-space: nowrap; }
+        .transcript-table th, .transcript-table td { padding: 16px 24px; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
+        .transcript-table th { color: var(--text-tertiary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; background: rgba(255, 255, 255, 0.02); }
+        .transcript-table tbody tr { transition: var(--transition-fast); }
+        .transcript-table tbody tr:hover { background: rgba(255,255,255,0.03); }
+        .transcript-table td { color: var(--text-secondary); }
+        .grade-highlight { color: var(--text-primary); font-weight: 600; }
+
+        /* --- Certificates Gallery CSS --- */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 32px;
+        }
+        
+        .cert-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+        
+        .cert-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .cert-img-container {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #111;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .cert-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        .cert-card:hover .cert-img-container img {
+            transform: scale(1.05);
+        }
+        
+        .cert-info {
+            padding: 24px;
+        }
+        
+        .cert-info h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .cert-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .cert-info .cert-note {
+            color: var(--text-tertiary);
+            font-style: italic;
+            font-size: 0.85rem;
+        }
+
+        .cert-info .cert-date {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            margin-top: 16px;
+            margin-bottom: 0;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image-container { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .section-container { padding: 80px 24px; }
+            .hero-cta { flex-direction: column; width: 100%; max-width: 300px; }
+            .timeline::before { left: 16px; }
+            .timeline-item { padding-left: 48px; }
+            .timeline-marker { left: 0; width: 32px; height: 32px; font-size: 0.9rem; }
+            .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+            .modal-content { padding: 32px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-bg">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+    <div class="mouse-glow" id="mouse-glow"></div>
+
+    <section class="section-container hero" id="home">
+        <div class="hero-badge reveal">Admissions Portfolio</div>
+        <h1 class="hero-title text-gradient reveal" style="transition-delay: 0.1s;">Henry Dang</h1>
+        <div class="typing-wrapper reveal" style="transition-delay: 0.2s;">
+            <span class="typewriter" id="typewriter"></span>
+        </div>
+        <p class="hero-desc reveal" style="transition-delay: 0.3s;">
+            A builder driven by curiosity. From organizing community clubs in Vietnam to engineering early-stage AI projects in Kansas, my journey is defined by a desire to understand structure, learn from failure, and build systems that create real-world impact.
+        </p>
+        <div class="hero-cta reveal" style="transition-delay: 0.4s;">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#journey" class="btn btn-secondary">My Journey</a>
+            <a href="#resume" class="btn btn-secondary">Dossier</a>
+        </div>
+    </section>
+
+    <section class="section-container" id="about">
+        <div class="section-header reveal">
+            <h2 class="section-title text-gradient">The Architecture of Curiosity</h2>
+            <p class="section-subtitle">How a fascination with how things work evolved into a passion for Computer Science.</p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-content reveal">
+                <p>
+                    My journey didn't start with code; it started with questions. Growing up in Vietnam, I was the kid who took apart toy cars not just to see the motor, but to understand the logic binding the components. That fundamental curiosity gradually evolved into an engineering mindset.
+                </p>
+                <p>
+                    When I began writing programs, I felt that same amazement. A few lines of code could change what appeared on a screen. But over time, particularly after a failed drone test in my lab, I realized that behind every result is a structure. <strong>I wanted to understand that structure, not just use it.</strong> Writing code that works is different from building systems that remain reliable when things go wrong.
+                </p>
+                <p>
+                    This mindset guided me across continents. Moving to the US and attending Life Prep Academy presented new challenges, like struggling initially with Physics. Instead of giving up, I learned to measure, analyze, and adapt my study habits—a resilience I now apply directly to my projects. Whether I'm analyzing flight data for my search-and-rescue drone idea or mapping out user flows for a new app, I focus on the process of learning.
+                </p>
+                <p>
+                    I am applying to study Computer Science because I don't just want to make machines move—I want to learn how to build dependable systems that help communities in times of need.
+                </p>
+            </div>
+            <div class="about-image-container reveal">
+                <span class="about-image-placeholder">[ Professional Portrait Placeholder ]</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="journey">
+        <div class="section-header reveal">
+            <h2 class="section-title text-gradient">A Journey of Growth</h2>
+            <p class="section-subtitle">Tracing milestones from early curiosity in Vietnam to engineering ambitions in the US.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-marker">🇻🇳</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">August 2020 — May 2024</span>
+                    <h3 class="timeline-title">Nguyen Du Secondary School</h3>
+                    <ul class="timeline-events">
+                        <li><strong>Building Foundations:</strong> Started exploring how physical and digital systems work by tinkering with electronics.</li>
+                        <li><strong>Academic Excellence:</strong> Maintained top grades in Mathematics, Physics, and Informatics.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-marker">🚀</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">August 2024 — September 2025</span>
+                    <h3 class="timeline-title">Nguyen Cong Tru High School</h3>
+                    <ul class="timeline-events">
+                        <li><strong>Family Business Website:</strong> Learned web development to build our company's first digital presence.</li>
+                        <li><strong>Environmental Leadership:</strong> Founded Flames Environmental Protection Club. Mobilized 15 volunteers and cleared 200kg of waste.</li>
+                        <li><strong>Media Club Head:</strong> Led a media team producing promotional content for school events.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-marker">🇺🇸</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">September 2025 — May 2027</span>
+                    <h3 class="timeline-title">Life Prep Academy (USA)</h3>
+                    <ul class="timeline-events">
+                        <li><strong>SkyVigil AI:</strong> Began researching and building early prototypes for a drone aimed at assisting in flood relief.</li>
+                        <li><strong>BEST Robotics:</strong> Led a 6-member build team to design and fabricate a competition robot in Kansas.</li>
+                        <li><strong>Academic Achievement:</strong> Won Best of Show (1st Place) and a Superior rating in Plane Geometry and Technical Excellence.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-marker">🎓</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">The Future</span>
+                    <h3 class="timeline-title">University & Beyond</h3>
+                    <p style="color: var(--text-secondary); margin-top: 16px; max-width: 600px;">
+                        Applying to rigorous institutions like Brown, Cornell, and Columbia to deepen my understanding of algorithms, control systems, and computer vision, with the ultimate goal of solving real-world infrastructure problems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="projects">
+        <div class="section-header reveal">
+            <h2 class="section-title text-gradient">Explorations & Projects</h2>
+            <p class="section-subtitle">Focusing on the process of learning, prototyping, and solving problems.</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="glass-card project-card reveal">
+                <div class="project-role">Research & Prototyping</div>
+                <h3 class="project-title">SkyVigil AI</h3>
+                <div class="project-details">
+                    <div class="project-detail-group">
+                        <h4>The Problem & Idea</h4>
+                        <p>Floods in Vietnam often isolate communities. I conceptualized a drone to assist with search, rescue, and delivering vital supplies when traditional routes fail.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>Process & Learnings</h4>
+                        <p>Researched payload capacities and flight stability. Early tests involved frequent crashes, teaching me how to analyze flight data, adjust weight distribution, and understand the limits of hardware reliability.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>Future Plans</h4>
+                        <p>Currently researching how to integrate infrared sensors for survivor detection and autonomous path planning.</p>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Research Process →</a>
+                </div>
+                <div class="project-tags">
+                    <span class="pill">Hardware</span>
+                    <span class="pill">Prototyping</span>
+                    <span class="pill">Data Analysis</span>
+                </div>
+            </div>
+
+            <div class="glass-card project-card reveal" style="transition-delay: 0.1s;">
+                <div class="project-role">Student Developer</div>
+                <h3 class="project-title">Family Business Platform</h3>
+                <div class="project-details">
+                    <div class="project-detail-group">
+                        <h4>The Objective</h4>
+                        <p>Our family business relied purely on word-of-mouth. I wanted to build a digital presence to increase customer reach.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>The Execution</h4>
+                        <p>I gathered business requirements, mapped out the UI/UX, wrote the content, and learned HTML, CSS, and Tailwind to code the site from scratch. Finally, I deployed it to the internet.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>The Impact</h4>
+                        <p>The site successfully created an online identity and led to a noticeable increase in direct quote requests.</p>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Live Site →</a>
+                    <a href="#" class="project-link">GitHub Repo →</a>
+                </div>
+                <div class="project-tags">
+                    <span class="pill">HTML/CSS</span>
+                    <span class="pill">Tailwind</span>
+                    <span class="pill">UI/UX Design</span>
+                </div>
+            </div>
+
+            <div class="glass-card project-card reveal" style="transition-delay: 0.2s;">
+                <div class="project-role">Idea & MVP Stage</div>
+                <h3 class="project-title">NutriMate</h3>
+                <div class="project-details">
+                    <div class="project-detail-group">
+                        <h4>The Concept</h4>
+                        <p>I noticed how difficult it was for my peers to track their daily nutrition simply. I wanted to build a streamlined, user-friendly tracker.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>Current Progress</h4>
+                        <p>Mapped out the core user flows and designed preliminary wireframes. I am currently using this project as a vehicle to learn mobile application frameworks and database management.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>Next Steps</h4>
+                        <p>Transitioning from wireframes to a functional Minimum Viable Product (MVP).</p>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Wireframes →</a>
+                </div>
+                <div class="project-tags">
+                    <span class="pill">App Design</span>
+                    <span class="pill">Wireframing</span>
+                    <span class="pill">User Flow</span>
+                </div>
+            </div>
+
+            <div class="glass-card project-card reveal" style="transition-delay: 0.3s;">
+                <div class="project-role">Learning Exercise</div>
+                <h3 class="project-title">Virtual Mouse</h3>
+                <div class="project-details">
+                    <div class="project-detail-group">
+                        <h4>The Goal</h4>
+                        <p>To learn the basics of computer vision by attempting to control a computer cursor using only hand gestures captured by a webcam.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>Process & Challenges</h4>
+                        <p>Implemented OpenCV and MediaPipe for hand tracking. I struggled significantly with lighting conditions and gesture recognition stability, which opened my eyes to the complexities of real-world computer vision.</p>
+                    </div>
+                    <div class="project-detail-group">
+                        <h4>Takeaway</h4>
+                        <p>A valuable introduction to Python libraries and the constraints of visual data processing.</p>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Watch Short Demo →</a>
+                    <a href="#" class="project-link">View Code →</a>
+                </div>
+                <div class="project-tags">
+                    <span class="pill">Python</span>
+                    <span class="pill">OpenCV</span>
+                    <span class="pill">MediaPipe</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="impact">
+        <div class="section-header reveal">
+            <h2 class="section-title text-gradient">Spheres of Impact</h2>
+            <p class="section-subtitle">Organizing teams and contributing to communities beyond the classroom.</p>
+        </div>
+
+        <div class="impact-grid">
+            <div class="glass-card impact-card reveal">
+                <span class="impact-icon">👑</span>
+                <h3 style="font-size: 1.5rem; margin-bottom: 8px;">Initiative</h3>
+                <ul class="impact-list">
+                    <li><strong>Founder</strong> <span>Flames Environmental</span></li>
+                    <li><strong>Project Lead</strong> <span>SkyVigil Prototyping</span></li>
+                    <li><strong>Developer</strong> <span>Family Business Web</span></li>
+                    <li><strong>Captain</strong> <span>E-Balls Soccer</span></li>
+                </ul>
+            </div>
+            
+            <div class="glass-card impact-card reveal" style="transition-delay: 0.1s;">
+                <span class="impact-icon">🤝</span>
+                <h3 style="font-size: 1.5rem; margin-bottom: 8px;">Community</h3>
+                <ul class="impact-list">
+                    <li><strong>Tutor</strong> <span>60+ hrs / 14 students</span></li>
+                    <li><strong>Organizer</strong> <span>200kg waste cleared</span></li>
+                    <li><strong>Fundraiser</strong> <span>VND 3 Million Raised</span></li>
+                    <li><strong>Head of Media</strong> <span>School PR</span></li>
+                </ul>
+            </div>
+            
+            <div class="glass-card impact-card reveal" style="transition-delay: 0.2s;">
+                <span class="impact-icon">⚙️</span>
+                <h3 style="font-size: 1.5rem; margin-bottom: 8px;">Teamwork</h3>
+                <ul class="impact-list">
+                    <li><strong>Build Lead</strong> <span>6-member Robotics</span></li>
+                    <li><strong>Competitor</strong> <span>BEST Robotics KS</span></li>
+                    <li><strong>Member</strong> <span>Christian State Academics</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="education">
+        <div class="section-header reveal">
+            <h2 class="section-title text-gradient">Academic Profile</h2>
+        </div>
+
+        <div class="stats-grid reveal">
+            <div class="glass-card stat-card">
+                <div class="stat-value text-gradient">3.59</div>
+                <div class="stat-label">Cumulative GPA</div>
+            </div>
+            <div class="glass-card stat-card">
+                <div class="stat-value">2027</div>
+                <div class="stat-label">Graduation Year</div>
+            </div>
+            <div class="glass-card stat-card">
+                <div class="stat-value text-gradient">CS</div>
+                <div class="stat-label">Intended Major</div>
+            </div>
+            <div class="glass-card stat-card">
+                <div class="stat-value">F-1</div>
+                <div class="stat-label">Visa Status</div>
+            </div>
+        </div>
+
+        <div class="glass-card reveal" style="margin-top: 32px;">
+            <h3 style="font-size: 1.25rem; margin-bottom: 16px;">Current Coursework & Exams</h3>
+            <div class="project-tags">
+                <span class="pill">AP Oral Communications</span>
+                <span class="pill">AP Introduction to Business</span>
+                <span class="pill">Algebra 2</span>
+                <span class="pill">Physical Science</span>
+                <span class="pill">Duolingo English: 100</span>
+                <span class="pill">Planned SAT: Nov 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="awards">
+        <div class="section-header reveal">
+            <h2 class="section-title text-gradient">Honors & Activities</h2>
+        </div>
+
+        <div class="badges-container reveal">
+            <div class="badge">
+                <span>🏆</span>
+                <span>National Honor Society</span>
+            </div>
+            <div class="badge">
+                <span>🥇</span>
+                <span>Best of Show (Christian State Academics)</span>
+            </div>
+            <div class="badge">
+                <span>⭐</span>
+                <span>Superior Rating (Plane Geometry)</span>
+            </div>
+            <div class="badge">
+                <span>🤖</span>
+                <span>BEST Robotics Competitor</span>
+            </div>
+            <div class="badge">
+                <span>⚽</span>
+                <span>City Champion Soccer Captain</span>
+            </div>
+            <div class="badge">
+                <span>🏸</span>
+                <span>1st Place City Badminton</span>
+            </div>
+            <div class="badge">
+                <span>🌎</span>
+                <span>Founder, Flames Club</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="resume">
+        <div class="glass-card reveal" style="text-align: center; padding: 64px 24px;">
+            <h2 class="section-title text-gradient" style="margin-bottom: 16px;">Admissions Dossier</h2>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                Access official documents, academic history, and complete portfolio PDF.
+            </p>
+            
+            <div class="resume-buttons" style="justify-content: center;">
+                <button class="btn btn-primary" onclick="openModal('transcript-modal')">
+                    View Transcript
+                </button>
+                <button class="btn btn-secondary" onclick="openModal('certificates-modal')">
+                    View Certificates
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal cho Bảng điểm (Transcript) -->
+    <div class="modal-overlay" id="transcript-modal" onclick="closeModal(event, 'transcript-modal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(null, 'transcript-modal')">×</button>
+            
+            <div class="transcript-header">
+                <h2 class="transcript-title text-gradient">Unofficial Academic Transcript</h2>
+                <div class="transcript-meta">
+                    <div>
+                        <strong>Student Name</strong>
+                        Dang, Hoang Long (Henry)
+                    </div>
+                    <div>
+                        <strong>Cumulative GPA</strong>
+                        3.59 / 4.0
+                    </div>
+                    <div>
+                        <strong>Credits Earned</strong>
+                        32.75
+                    </div>
+                </div>
+            </div>
+
+            <div class="transcript-section">
+                <h3>Grade 9 (2023 - 2024)</h3>
+                <p class="transcript-school">Nguyen Du Secondary School • Annual GPA: 3.6429</p>
+                <div class="table-responsive">
+                    <table class="transcript-table">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Level</th>
+                                <th>Final Grade</th>
+                                <th>Credits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Biology</td><td>REG</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                            <tr><td>Chemistry</td><td>REG</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                            <tr><td>Civic Education</td><td>REG</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                            <tr><td>English</td><td>REG</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                            <tr><td>Fine Arts</td><td>PF</td><td class="grade-highlight">P</td><td>1.00</td></tr>
+                            <tr><td>Geography</td><td>REG</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                            <tr><td>History</td><td>REG</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                            <tr><td>Informatics</td><td>REG</td><td class="grade-highlight">A+</td><td>1.00</td></tr>
+                            <tr><td>Mathematics</td><td>REG</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                            <tr><td>Music</td><td>PF</td><td class="grade-highlight">P</td><td>1.00</td></tr>
+                            <tr><td>Physical Education</td><td>PF</td><td class="grade-highlight">P</td><td>1.00</td></tr>
+                            <tr><td>Physics</td><td>REG</td><td class="grade-highlight">B</td><td>1.00</td></tr>
+                            <tr><td>Technology</td><td>REG</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                            <tr><td>Vietnamese Literature</td><td>REG</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="transcript-section">
+                <h3>Grade 10 (2024 - 2025)</h3>
+                <p class="transcript-school">Nguyen Cong Tru High School • Annual GPA: 3.5833</p>
+                <div class="table-responsive">
+                    <table class="transcript-table">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Level</th>
+                                <th>Final Grade</th>
+                                <th>Credits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Chemistry</td><td>REG</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                            <tr><td>English</td><td>REG</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                            <tr><td>Experiential & Vocational Activities</td><td>PF</td><td class="grade-highlight">P</td><td>1.00</td></tr>
+                            <tr><td>History</td><td>REG</td><td class="grade-highlight">B</td><td>1.00</td></tr>
+                            <tr><td>Informatics</td><td>REG</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                            <tr><td>Local Education Content</td><td>PF</td><td class="grade-highlight">P</td><td>1.00</td></tr>
+                            <tr><td>Mathematics</td><td>REG</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                            <tr><td>National Defense Security</td><td>REG</td><td class="grade-highlight">A+</td><td>1.00</td></tr>
+                            <tr><td>Physical Education</td><td>PF</td><td class="grade-highlight">P</td><td>1.00</td></tr>
+                            <tr><td>Physics</td><td>REG</td><td class="grade-highlight">B</td><td>1.00</td></tr>
+                            <tr><td>Technology</td><td>REG</td><td class="grade-highlight">A+</td><td>1.00</td></tr>
+                            <tr><td>Vietnamese Literature</td><td>REG</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="transcript-section" style="margin-bottom: 0;">
+                <h3>Grade 11 (2025 - 2026)</h3>
+                <p class="transcript-school">Life Preparatory Academy • Annual GPA: 3.4815</p>
+                <div class="table-responsive">
+                    <table class="transcript-table">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Level</th>
+                                <th>Sem 1</th>
+                                <th>Sem 2</th>
+                                <th>Credits</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Algebra 2</td><td>REG</td><td>B</td><td class="grade-highlight">B+</td><td>1.00</td></tr>
+                            <tr><td>Chapel</td><td>PF</td><td>P</td><td>P</td><td>0.50</td></tr>
+                            <tr><td>ELA 101</td><td>REG</td><td>C+</td><td class="grade-highlight">A+</td><td>1.00</td></tr>
+                            <tr><td>Introduction to Business</td><td>AP</td><td>-</td><td class="grade-highlight">A</td><td>0.50</td></tr>
+                            <tr><td>Kansas History</td><td>REG</td><td>C</td><td>C-</td><td>0.25</td></tr>
+                            <tr><td>Oral Communications</td><td>AP</td><td class="grade-highlight">B</td><td>-</td><td>0.50</td></tr>
+                            <tr><td>Physical Science</td><td>REG</td><td class="grade-highlight">A+</td><td class="grade-highlight">A+</td><td>1.00</td></tr>
+                            <tr><td>US History</td><td>REG</td><td>C</td><td>-</td><td>0.50</td></tr>
+                            <tr><td>World History</td><td>REG</td><td>-</td><td class="grade-highlight">A</td><td>0.50</td></tr>
+                            <tr><td>Yearbook</td><td>REG</td><td class="grade-highlight">B+</td><td class="grade-highlight">A</td><td>1.00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="color: var(--text-tertiary); font-size: 0.85rem; margin-top: 16px;">*Transcript Key: REG = Regular, AP = Advanced Placement, PF = Pass/Fail. Expected Graduation: 05/2027.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal cho Chứng nhận (Certificates Gallery) -->
+    <div class="modal-overlay" id="certificates-modal" onclick="closeModal(event, 'certificates-modal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal(null, 'certificates-modal')">×</button>
+            
+            <div class="transcript-header">
+                <h2 class="transcript-title text-gradient">Junior Year Certificates</h2>
+                <p style="color: var(--text-secondary);">Honors and awards achieved during the 2025-2026 academic year at Life Preparatory Academy.</p>
+            </div>
+
+            <div class="cert-grid">
+                <!-- Certificate 1: NHS -->
+                <div class="cert-card">
+                    <div class="cert-img-container">
+                        <img src="certificate1.jpg" alt="National Honor Society Certificate">
+                    </div>
+                    <div class="cert-info">
+                        <h4>National Honor Society (NHS) – Certificate of Membership</h4>
+                        <p>Selected for the National Honor Society in recognition of academic excellence, leadership, service, and character.</p>
+                        <p class="cert-note">Presented by Mr. Alberto Meloni (NHS Chapter Adviser and Harvard University alumnus).</p>
+                        <span class="cert-date">Life Prep Academy, May 2026</span>
+                    </div>
+                </div>
+
+                <!-- Certificate 2: Best of Show -->
+                <div class="cert-card">
+                    <div class="cert-img-container">
+                        <img src="certificate2.jpg" alt="Best of Show - Portrait Photography">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Best of Show – High School Photography Portrait</h4>
+                        <p>Awarded Best of Show in the High School Portrait Photography category at the Midwest Christian School Academic Meet & Fine Arts Festival.</p>
+                        <span class="cert-date">April 2026</span>
+                    </div>
+                </div>
+
+                <!-- Certificate 3: Superior Ranking -->
+                <div class="cert-card">
+                    <div class="cert-img-container">
+                        <img src="certificate3.jpg" alt="Superior in Photography">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Superior Ranking – Portrait Photography</h4>
+                        <p>Received Superior Ranking for outstanding dedication and commitment to learning in Portrait Photography at the Midwest Christian School Academic Meet.</p>
+                        <span class="cert-date">April 2026</span>
+                    </div>
+                </div>
+
+                <!-- Certificate 4: Honorable Mention -->
+                <div class="cert-card">
+                    <div class="cert-img-container">
+                        <img src="certificate4.jpg" alt="Honorable Mention - Plane Geometry">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Honorable Mention – Plane Geometry</h4>
+                        <p>Received Honorable Mention for outstanding performance in the Plane Geometry competition at the Midwest Christian School Academic Meet.</p>
+                        <span class="cert-date">April 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content reveal">
+            <div class="contact-info">
+                <a href="mailto:Danglongpct2009@gmail.com" class="contact-item text-gradient">
+                    Danglongpct2009@gmail.com
+                </a>
+                <a href="tel:+13162417146" class="contact-item phone">
+                    +1 (316) 241 7146
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <span>&copy; 2026 Henry Dang (Long Hoang Dang).</span>
+            <span>Handcrafted without frameworks.</span>
+        </div>
+    </footer>
+
+    <div id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+
+    <script>
+        // Custom Mouse Glow Effect (Premium Vercel/Linear style)
+        const glow = document.getElementById('mouse-glow');
+        
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+                glow.style.opacity = '1';
+            });
+        });
+
+        document.addEventListener('mouseleave', () => {
+            glow.style.opacity = '0';
+        });
+
+        const phrases = [
+            "Aspiring Computer Science Student",
+            "Interested in AI & Robotics",
+            "Building projects for real-world impact"
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter');
+        
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typewriterElement.innerText = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterElement.innerText = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typingSpeed = isDeleting ? 30 : 80;
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typingSpeed = 2500; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500; // Pause before typing next word
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        setTimeout(type, 1000);
+
+        // Intersection Observer for Smooth Scroll Reveals
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+        
+        revealElements.forEach(el => observer.observe(el));
+
+        // Back to Top Button Logic
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Parallax effect for ambient orbs
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => {
+                const scrolled = window.scrollY;
+                const orbs = document.querySelectorAll('.glow-orb');
+                
+                orbs.forEach((orb, index) => {
+                    const speed = index === 0 ? 0.03 : -0.02;
+                    orb.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+        });
+
+        // Modal Logic for Transcript & Certificates
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            }
+        }
+
+        function closeModal(event, modalId) {
+            if (!event || event.target.id === modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = ''; 
+                }
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
